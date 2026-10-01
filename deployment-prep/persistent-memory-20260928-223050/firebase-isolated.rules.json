@@ -1,0 +1,648 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "accessBindings": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child($uid).child('elderId').val()).child('projectId').val()",
+        ".write": false
+      }
+    },
+    "accessScopes": {
+      "$elder": {
+        ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+        ".write": false
+      }
+    },
+    "users": {
+      "$elder": {
+        ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder"
+      }
+    },
+    "devices": {
+      "$device": {
+        ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device",
+        "lastSeen": {
+          ".write": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device && root.child('accessBindings').child(auth.uid).child('role').val() == 'device' && newData.exists()",
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+        },
+        "lastSignal": {
+          ".write": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device && root.child('accessBindings').child(auth.uid).child('role').val() == 'device' && newData.exists()",
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+        },
+        "sensors": {
+          "radar": {
+            "presence": {
+              ".write": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device && root.child('accessBindings').child(auth.uid).child('role').val() == 'device' && newData.exists()",
+              ".validate": "newData.isBoolean()"
+            }
+          },
+          "pillbox": {
+            "lastOpenedAt": {
+              ".write": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device && root.child('accessBindings').child(auth.uid).child('role').val() == 'device' && newData.exists()",
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "$elder": {
+        ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+        ".indexOn": [
+          "createdAt"
+        ],
+        "$event": {
+          ".write": "((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && newData.exists() && newData.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && (!data.exists() || (data.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && newData.child('type').val() == data.child('type').val() && newData.child('createdAt').val() == data.child('createdAt').val() && newData.child('elderId').val() == data.child('elderId').val())) && root.child('accessBindings').child(auth.uid).child('role').val() == 'device'",
+          ".validate": "newData.hasChildren(['elderId','deviceId','type','status','createdAt'])",
+          "elderId": {
+            ".validate": "newData.val() == $elder"
+          },
+          "deviceId": {
+            ".validate": "newData.val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()"
+          },
+          "type": {
+            ".validate": "newData.isString() && newData.val().length <= 80"
+          },
+          "status": {
+            ".validate": "newData.val() == 'open' || newData.val() == 'unread' || newData.val() == 'resolved'"
+          },
+          "createdAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "resolvedAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "severity": {
+            ".validate": "newData.isString() && newData.val().length <= 20"
+          },
+          "title": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "label": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "message": {
+            ".validate": "newData.isString() && newData.val().length <= 10000"
+          },
+          "location": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "runId": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "sessionId": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "messageId": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "role": {
+            ".validate": "newData.val() == 'user' || newData.val() == 'assistant'"
+          },
+          "sourceEventId": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "deviceName": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "meta": {
+            "source": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "scheduleId": {
+              ".validate": "newData.isString() && newData.val().length <= 100"
+            },
+            "scheduleRevision": {
+              ".validate": "newData.isString() && newData.val().length <= 100"
+            },
+            "medicationName": {
+              ".validate": "newData.isString() && newData.val().length <= 200"
+            },
+            "scheduledFor": {
+              ".validate": "newData.isString() && newData.val().length == 16 && newData.val().matches(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])_([01][0-9]|2[0-3]):[0-5][0-9]$/)"
+            },
+            "voiceCheck": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "reminderDelivery": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "$other": {
+            ".validate": "false"
+          }
+        }
+      }
+    },
+    "medicationSchedules": {
+      "$elder": {
+        "$device": {
+          ".read": "((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device",
+          ".write": "(((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device) && root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' && newData.exists()",
+          ".validate": "newData.hasChildren(['schemaVersion','timezone','revision','updatedAt','updatedBy','updatedUid'])",
+          "schemaVersion": {
+            ".validate": "newData.val() == 1"
+          },
+          "timezone": {
+            ".validate": "newData.val() == 'Asia/Seoul'"
+          },
+          "revision": {
+            ".validate": "newData.isString() && newData.val().length <= 100"
+          },
+          "updatedAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "updatedBy": {
+            ".validate": "newData.val() == 'guardian_dashboard'"
+          },
+          "entries": {
+            "$schedule": {
+              ".validate": "newData.hasChildren(['enabled','time','medicationName','weekdays'])",
+              "enabled": {
+                ".validate": "newData.isBoolean()"
+              },
+              "time": {
+                ".validate": "newData.isString() && newData.val().matches(/^([01][0-9]|2[0-3]):[0-5][0-9]$/)"
+              },
+              "medicationName": {
+                ".validate": "newData.isString() && newData.val().length <= 100"
+              },
+              "weekdays": {
+                "$i": {
+                  ".validate": "$i.matches(/^[0-6]$/) && newData.isNumber() && newData.val() >= 1 && newData.val() <= 7 && newData.val() % 1 == 0"
+                }
+              },
+              "$other": {
+                ".validate": "false"
+              }
+            }
+          },
+          "$other": {
+            ".validate": "false"
+          },
+          "updatedUid": {
+            ".validate": "newData.val() == auth.uid"
+          }
+        }
+      }
+    },
+    "commands": {
+      "$elder": {
+        "$device": {
+          ".read": "((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device",
+          "$command": {
+            ".write": "(((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('deviceId').val() == $device) && newData.exists() && (((root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian') && !data.exists() && newData.child('status').val() == 'pending') || ((root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && data.exists() && ((data.child('status').val() == 'pending' && newData.child('status').val() == 'processing') || (data.child('status').val() == 'processing' && (newData.child('status').val() == 'processed' || newData.child('status').val() == 'failed')))))",
+            ".validate": "newData.hasChildren(['commandId','elderId','deviceId','type','status','createdAt','requestedUid']) && (!data.exists() || newData.child('createdAt').val() == data.child('createdAt').val())",
+            "commandId": {
+              ".validate": "newData.val() == $command"
+            },
+            "elderId": {
+              ".validate": "newData.val() == $elder"
+            },
+            "deviceId": {
+              ".validate": "newData.val() == $device"
+            },
+            "type": {
+              ".validate": "newData.val() == 'start_ai_conversation'"
+            },
+            "status": {
+              ".validate": "newData.isString() && newData.val().length <= 20"
+            },
+            "createdAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "acknowledgedAt": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "acknowledgedBy": {
+              ".validate": "newData.val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "claimToken": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device' && newData.isString() && (!data.exists() || newData.val() == data.val())"
+            },
+            "processedAt": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "outcome": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "errorType": {
+              ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+            },
+            "$other": {
+              ".validate": "false"
+            },
+            "requestedUid": {
+              ".validate": "newData.isString() && ((!data.exists() && newData.val() == auth.uid) || (data.exists() && newData.val() == data.val()))"
+            }
+          }
+        }
+      }
+    },
+    "conversations": {
+      "$elder": {
+        ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+        "$session": {
+          ".write": "(((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && newData.exists() && newData.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && (!data.exists() || data.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val())",
+          ".validate": "newData.hasChildren(['elderId','deviceId','createdAt','updatedAt'])",
+          "elderId": {
+            ".validate": "newData.val() == $elder"
+          },
+          "deviceId": {
+            ".validate": "newData.val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()"
+          },
+          "createdAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "updatedAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "messages": {
+            "$message": {
+              ".validate": "newData.hasChildren(['messageId','role','text','createdAt','turnIndex','audioStatus'])",
+              "messageId": {
+                ".validate": "newData.val() == $message"
+              },
+              "role": {
+                ".validate": "newData.val() == 'user' || newData.val() == 'assistant'"
+              },
+              "text": {
+                ".validate": "newData.isString() && newData.val().length <= 10000"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+              },
+              "turnIndex": {
+                ".validate": "newData.isNumber() && newData.val() >= 0"
+              },
+              "audioStatus": {
+                ".validate": "newData.isString() && newData.val().length <= 40"
+              },
+              "$other": {
+                ".validate": "false"
+              }
+            }
+          },
+          "$other": {
+            ".validate": "false"
+          }
+        }
+      }
+    },
+    "memories": {
+      "$elder": {
+        "_control": {
+          ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+          ".write": "(((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && newData.exists() && ((!data.child('generation').exists() && (!newData.child('generation').exists() || newData.child('generation').val() == 'initial')) || newData.child('generation').val() == data.child('generation').val() || (data.child('pendingReset').exists() && data.child('resetCoordinator/state').val() == 'processing' && newData.child('resetCoordinator/state').val() == 'committed' && newData.child('resetCoordinator/activeOperationId').val() == data.child('pendingReset/operationId').val() && newData.child('resetOperations').child(data.child('pendingReset/operationId').val()).child('status').val() == 'completed' && ((data.child('generation').isNumber() && newData.child('generation').val() == data.child('generation').val() + 1) || (!data.child('generation').isNumber() && newData.child('generation').val() == 1))))",
+          "schemaVersion": {
+            ".validate": "newData.val() == 2"
+          },
+          "generation": {
+            ".validate": "((newData.isString() && newData.val().length > 0 && newData.val().length <= 80) || (newData.isNumber() && newData.val() >= 0 && newData.val() < 9007199254740991 && newData.val() % 1 == 0))"
+          },
+          "activeIds": {
+            "$id": {
+              ".validate": "newData.val() == true"
+            }
+          },
+          "archiveIds": {
+            "$id": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            }
+          },
+          "leases": {
+            "$lease": {
+              "expiresAt": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+              },
+              "$other": {
+                ".validate": "false"
+              }
+            }
+          },
+          "pendingReset": {
+            ".validate": "newData.hasChildren(['operationId','createdAt'])",
+            "operationId": {
+              ".validate": "newData.val() == newData.parent().parent().child('resetCoordinator/activeOperationId').val()"
+            },
+            "createdAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "resetCoordinator": {
+            ".validate": "newData.hasChildren(['activeOperationId','deviceId','epoch','state','baseGeneration','claimedAt']) && newData.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && ((!data.exists() && newData.child('epoch').val() == 1) || (newData.child('activeOperationId').val() == data.child('activeOperationId').val() && newData.child('epoch').val() == data.child('epoch').val()) || (data.child('state').val() == 'completed' && newData.child('epoch').val() == data.child('epoch').val() + 1))",
+            "activeOperationId": {
+              ".validate": "newData.isString() && root.child('memoryResetOperations').child($elder).child(newData.val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && root.child('memoryResetOperations').child($elder).child(newData.val()).child('status').val() == 'processing' || (data.val() == newData.val())"
+            },
+            "deviceId": {
+              ".validate": "newData.val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()"
+            },
+            "epoch": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() % 1 == 0"
+            },
+            "state": {
+              ".validate": "newData.val() == 'processing' || newData.val() == 'committed' || newData.val() == 'completed'"
+            },
+            "baseGeneration": {
+              ".validate": "((newData.isString() && newData.val().length > 0 && newData.val().length <= 80) || (newData.isNumber() && newData.val() >= 0 && newData.val() < 9007199254740991 && newData.val() % 1 == 0))"
+            },
+            "resultingGeneration": {
+              ".validate": "((newData.isString() && newData.val().length > 0 && newData.val().length <= 80) || (newData.isNumber() && newData.val() >= 0 && newData.val() < 9007199254740991 && newData.val() % 1 == 0))"
+            },
+            "claimedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "completedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "resetOperations": {
+            "$operation": {
+              "status": {
+                ".validate": "newData.val() == 'pending' || newData.val() == 'completed' || newData.val() == 'failed'"
+              },
+              "generation": {
+                ".validate": "((newData.isString() && newData.val().length > 0 && newData.val().length <= 80) || (newData.isNumber() && newData.val() >= 0 && newData.val() < 9007199254740991 && newData.val() % 1 == 0))"
+              },
+              "completedAt": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+              },
+              "coalesced": {
+                ".validate": "newData.isBoolean()"
+              },
+              "coalescedTo": {
+                ".validate": "newData.isString() && newData.val().length <= 80"
+              },
+              "epoch": {
+                ".validate": "newData.isNumber() && newData.val() >= 1"
+              },
+              "baseGeneration": {
+                ".validate": "((newData.isString() && newData.val().length > 0 && newData.val().length <= 80) || (newData.isNumber() && newData.val() >= 0 && newData.val() < 9007199254740991 && newData.val() % 1 == 0))"
+              },
+              "$other": {
+                ".validate": "false"
+              }
+            }
+          },
+          "resetCoveredIds": {
+            "$id": {
+              ".validate": "newData.val() == true"
+            }
+          },
+          "lastResetAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "resetCutoffAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "maintenanceRevision": {
+            ".validate": "newData.isString() && newData.val().length <= 80"
+          },
+          "legacyMigration": {
+            ".validate": "newData.isString() && newData.val().length <= 80"
+          },
+          "$other": {
+            ".validate": "false"
+          }
+        },
+        "active": {
+          "$id": {
+            ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+            ".write": "(((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && ((!data.exists() && newData.exists()) || (data.exists() && newData.val() == data.val()) || (!newData.exists() && data.child('source').val() == 'conversation' && data.child('elderId').val() == $elder && !root.child('memories').child($elder).child('_control').child('activeIds').child($id).exists()))",
+            ".validate": "newData.hasChildren(['id','elderId','source','type','subject','content','status','lastMentionedAt'])",
+            "id": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "elderId": {
+              ".validate": "newData.val() == $elder"
+            },
+            "source": {
+              ".validate": "newData.val() == 'conversation'"
+            },
+            "sourceSessionId": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "type": {
+              ".validate": "newData.val() == 'preference' || newData.val() == 'profile' || newData.val() == 'episodic'"
+            },
+            "subject": {
+              ".validate": "newData.isString() && newData.val().length <= 60"
+            },
+            "content": {
+              ".validate": "newData.isString() && newData.val().length <= 280"
+            },
+            "status": {
+              ".validate": "newData.val() == 'active' || newData.val() == 'archived'"
+            },
+            "lastMentionedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "createdAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "updatedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "archivedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "validUntil": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "importance": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5 && newData.val() % 1 == 0"
+            },
+            "tags": {
+              "$idx": {
+                ".validate": "$idx.matches(/^[0-5]$/) && newData.isString() && newData.val().length <= 30"
+              }
+            },
+            "eventDate": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "eventDatePrecision": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "evidenceKey": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "topicKey": {
+              ".validate": "newData.isString() && newData.val().length <= 120"
+            },
+            "archiveReason": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          }
+        },
+        "archive": {
+          "$id": {
+            ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+            ".write": "(((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && ((!data.exists() && newData.exists()) || (data.child('source').val() == 'conversation' && data.child('elderId').val() == $elder && (newData.exists() || !root.child('memories').child($elder).child('_control').child('archiveIds').child($id).exists())))",
+            ".validate": "newData.hasChildren(['id','elderId','source','type','subject','content','status','lastMentionedAt'])",
+            "id": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "elderId": {
+              ".validate": "newData.val() == $elder"
+            },
+            "source": {
+              ".validate": "newData.val() == 'conversation'"
+            },
+            "sourceSessionId": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "type": {
+              ".validate": "newData.val() == 'preference' || newData.val() == 'profile' || newData.val() == 'episodic'"
+            },
+            "subject": {
+              ".validate": "newData.isString() && newData.val().length <= 60"
+            },
+            "content": {
+              ".validate": "newData.isString() && newData.val().length <= 280"
+            },
+            "status": {
+              ".validate": "newData.val() == 'active' || newData.val() == 'archived'"
+            },
+            "lastMentionedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "createdAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "updatedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "archivedAt": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "validUntil": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+            },
+            "importance": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5 && newData.val() % 1 == 0"
+            },
+            "tags": {
+              "$idx": {
+                ".validate": "$idx.matches(/^[0-5]$/) && newData.isString() && newData.val().length <= 30"
+              }
+            },
+            "eventDate": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "eventDatePrecision": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "evidenceKey": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "topicKey": {
+              ".validate": "newData.isString() && newData.val().length <= 120"
+            },
+            "archiveReason": {
+              ".validate": "newData.isString() && newData.val().length <= 64"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          }
+        }
+      }
+    },
+    "memoryResetOperations": {
+      "$elder": {
+        ".read": "(auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder",
+        ".indexOn": [
+          "deviceStatus",
+          "deviceEpoch"
+        ],
+        "$operation": {
+          ".read": "((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && (!data.exists() || data.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val())",
+          ".write": "newData.exists() && (((((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian') && !data.exists() && newData.child('status').val() == 'requested') || ((((auth != null && root.child('accessBindings').child(auth.uid).child('enabled').val() == true && auth.token.aud == root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('projectId').val() && (root.child('accessBindings').child(auth.uid).child('role').val() == 'guardian' || root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && root.child('accessScopes').child(root.child('accessBindings').child(auth.uid).child('elderId').val()).child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()) && root.child('accessBindings').child(auth.uid).child('elderId').val() == $elder) && root.child('accessBindings').child(auth.uid).child('role').val() == 'device') && data.exists() && data.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && (data.child('status').val() == 'requested' || data.child('status').val() == 'processing')))",
+          ".validate": "newData.hasChildren(['status','deviceId','deviceStatus','requestedAt','requestedBy','requestedUid','intent']) && newData.child('deviceId').val() == root.child('accessBindings').child(auth.uid).child('deviceId').val() && (!data.exists() || (newData.child('deviceId').val() == data.child('deviceId').val() && newData.child('requestedAt').val() == data.child('requestedAt').val() && newData.child('requestedBy').val() == data.child('requestedBy').val() && newData.child('intent/version').val() == data.child('intent/version').val() && newData.child('intent/generation').val() == data.child('intent/generation').val() && newData.child('intent/epoch').val() == data.child('intent/epoch').val() && newData.child('intent/operationId').val() == data.child('intent/operationId').val())) && ((!data.exists() && newData.child('status').val() == 'requested') || (data.child('status').val() == 'requested' && (newData.child('status').val() == 'processing' || newData.child('status').val() == 'failed')) || (data.child('status').val() == 'processing' && (newData.child('status').val() == 'processing' || newData.child('status').val() == 'completed' || newData.child('status').val() == 'failed'))) && (newData.child('status').val() != 'completed' || (root.child('memories').child($elder).child('_control').child('resetOperations').child($operation).child('status').val() == 'completed' && !root.child('memories').child($elder).child('_control').child('pendingReset').exists() && newData.child('generation').val() == root.child('memories').child($elder).child('_control').child('resetOperations').child($operation).child('generation').val() && newData.child('resultingGeneration').val() == root.child('memories').child($elder).child('_control').child('resetOperations').child($operation).child('generation').val() && newData.child('completedAt').isNumber()))",
+          "status": {
+            ".validate": "newData.isString() && newData.val().length <= 16"
+          },
+          "deviceId": {
+            ".validate": "newData.val() == root.child('accessBindings').child(auth.uid).child('deviceId').val()"
+          },
+          "deviceStatus": {
+            ".validate": "newData.val() == newData.parent().child('deviceId').val() + '|' + newData.parent().child('status').val()"
+          },
+          "requestedAt": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 253402267199000"
+          },
+          "requestedBy": {
+            ".validate": "newData.val() == 'guardian_dashboard'"
+          },
+          "intent": {
+            ".validate": "newData.hasChildren(['version','generation','epoch'])",
+            "version": {
+              ".validate": "newData.val() == 1"
+            },
+            "generation": {
+              ".validate": "((newData.isString() && newData.val().length > 0 && newData.val().length <= 80) || (newData.isNumber() && newData.val() >= 0 && newData.val() < 9007199254740991 && newData.val() % 1 == 0))"
+            },
+            "epoch": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 == 0"
+            },
+            "operationId": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "processingAt": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "baseGeneration": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "generation": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "resultingGeneration": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "completedAt": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "coalesced": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "coalescedTo": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "resetEpoch": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "deviceEpoch": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "failureCode": {
+            ".validate": "root.child('accessBindings').child(auth.uid).child('role').val() == 'device'"
+          },
+          "$other": {
+            ".validate": "false"
+          },
+          "requestedUid": {
+            ".validate": "newData.isString() && ((!data.exists() && newData.val() == auth.uid) || (data.exists() && newData.val() == data.val()))"
+          }
+        }
+      }
+    }
+  }
+}

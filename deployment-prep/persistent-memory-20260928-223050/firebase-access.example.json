@@ -1,0 +1,22 @@
+{
+  "accessBindings": {
+    "<TEST_GUARDIAN_AUTH_UID>": {
+      "enabled": true,
+      "role": "guardian",
+      "elderId": "elder_001",
+      "deviceId": "device_001"
+    },
+    "<DEDICATED_TEST_DEVICE_AUTH_UID>": {
+      "enabled": true,
+      "role": "device",
+      "elderId": "elder_001",
+      "deviceId": "device_001"
+    }
+  },
+  "accessScopes": {
+    "elder_001": {
+      "deviceId": "device_001",
+      "projectId": "<TEST_PROJECT_ID>"
+    }
+  }
+}

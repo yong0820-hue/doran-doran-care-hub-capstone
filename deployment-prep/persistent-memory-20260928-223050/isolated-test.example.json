@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "test_project_id": "<TEST_PROJECT_ID>",
+  "test_database_url": "https://<EXACT_TEST_DATABASE_HOST>",
+  "production_project_id": "<KNOWN_PRODUCTION_PROJECT_ID>",
+  "production_database_url": "https://<EXACT_KNOWN_PRODUCTION_DATABASE_HOST>",
+  "database_project_confirmed": false,
+  "elder_id": "elder_001",
+  "device_id": "device_001",
+  "pi": {
+    "firebase_uid": "<DEDICATED_TEST_DEVICE_AUTH_UID>",
+    "code_dir": "/home/pi-user/doran-isolated-memory/code",
+    "working_directory": "/home/pi-user/doran-isolated-memory-state",
+    "original_code_dir": "/home/pi-user/doran-doran-care-hub/raspberry-pi-voice-hub",
+    "original_state_directory": "/home/pi-user/doran-doran-care-hub/raspberry-pi-voice-hub",
+    "python": "/home/pi-user/doran-doran-care-hub/raspberry-pi-voice-hub/.venv/bin/python",
+    "playback_device": "plughw:CARD=USB,DEV=0",
+    "openai_key_file": "/home/pi-user/.config/doran-isolated-memory/openai.key",
+    "firebase_credential_file": "/home/pi-user/.config/doran-isolated-memory/firebase.auth.json"
+  },
+  "guardian": {
+    "VITE_FIREBASE_API_KEY": "<TEST_FIREBASE_WEB_API_KEY_NOT_AUTH_TOKEN>",
+    "VITE_FIREBASE_AUTH_DOMAIN": "<TEST_PROJECT_ID>.firebaseapp.com",
+    "VITE_FIREBASE_DATABASE_URL": "https://<EXACT_TEST_DATABASE_HOST>",
+    "VITE_FIREBASE_PROJECT_ID": "<TEST_PROJECT_ID>"
+  }
+}

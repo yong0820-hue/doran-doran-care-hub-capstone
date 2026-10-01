@@ -1,0 +1,2 @@
+-r requirements.txt
+vosk==0.3.45

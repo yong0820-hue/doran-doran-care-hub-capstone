@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f4ec">
+    <title>도란도란</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/memory_game.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body data-state="offline" data-page="home">
+    <main class="screen" aria-label="도란도란 음성 돌봄">
+      <header class="header">
+        <h1>도란도란<span class="brand-dot" aria-hidden="true"></span></h1>
+        <div class="header-actions">
+          <span class="connection" id="connection">화면 연결 중</span>
+          <button class="home-button" id="home-button" type="button" aria-label="처음 화면으로">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M6 9v12h12V9M10 21v-7h4v7" /></svg>
+            처음
+          </button>
+        </div>
+      </header>
+      <div class="page-viewport" id="page-viewport">
+        <div class="page-track" id="page-track">
+          <section class="page home-page" id="page-home" data-page="home" aria-label="처음 · 시간과 도란이 상태">
+            <section class="main-content" aria-label="시간과 도란이 상태">
+              <div class="clock-block">
+                <p class="date" id="date"></p>
+                <div class="clock-line" aria-hidden="true"><span class="period" id="period"></span><span class="clock" id="clock">--:--</span></div>
+                <time class="sr-only" id="accessible-clock"></time>
+              </div>
+              <div class="voice-block">
+                <div class="voice-mark" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" focusable="false">
+                    <path class="face" d="M24 33v5m32-5v5M30 49q10 9 20 0" />
+                    <g class="voice-bars"><path d="M24 36v8m8-16v24m8-31v38m8-31v24m8-16v8" /></g>
+                    <g class="thinking-dots"><circle cx="25" cy="40" r="4" /><circle cx="40" cy="40" r="4" /><circle cx="55" cy="40" r="4" /></g>
+                    <path class="offline-mark" d="M40 22v23m0 12v1" />
+                  </svg>
+                </div>
+                <div class="voice-copy" role="status" aria-live="polite" aria-atomic="true"><h2 id="voice-status">화면 연결 중이에요</h2><p id="voice-hint">잠시만 기다려 주세요</p></div>
+              </div>
+              <section class="alert-card" id="alert-card" role="status" aria-live="polite" aria-atomic="true" hidden><span class="alert-symbol" aria-hidden="true">!</span><div><h2 id="alert-title"></h2><p id="alert-message"></p></div></section>
+            </section>
+            <footer class="footer">
+              <button class="talk-button" id="talk-button" type="button" disabled>
+                <svg viewBox="0 0 28 28" aria-hidden="true" focusable="false"><rect x="10" y="3" width="8" height="14" rx="4" /><path d="M6 13v1a8 8 0 0 0 16 0v-1M14 22v3m-4 0h8" /></svg>
+                <span id="button-label">도란이와 대화하기</span>
+              </button>
+              <button class="conversation-reset-button" id="conversation-reset-button" type="button" aria-expanded="false" aria-controls="conversation-reset-confirmation" disabled>대화 초기화</button>
+              <section class="conversation-reset-confirmation" id="conversation-reset-confirmation" aria-label="대화 초기화 확인" hidden>
+                <p>지금 대화를 마치고 새로 시작할까요?<br>저장된 기억과 돌봄 기록은 그대로 남아요.<br>말하기·듣기와 돌봄 안내가 끝나면 초기화해요.</p>
+                <div class="conversation-reset-actions">
+                  <button id="conversation-reset-cancel" type="button">취소</button>
+                  <button id="conversation-reset-confirm" type="button">대화 초기화 확인</button>
+                </div>
+              </section>
+              <p class="conversation-reset-feedback" id="conversation-reset-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+              <p class="action-feedback sr-only" id="action-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+            </footer>
+          </section>
+          <section class="page radio-page" id="page-radio" data-page="radio" aria-label="음악 · 라디오" aria-hidden="true" inert>
+            <header class="page-heading"><div><p class="eyebrow">마음에 드는 소리와 함께</p><h2>음악 · 라디오</h2></div><span class="feature-tag">인터넷 라디오</span></header>
+            <div class="radio-empty" id="radio-empty" role="status">
+              <div class="illustration radio-illustration" aria-hidden="true"><svg viewBox="0 0 160 120"><path d="m34 30 85-19M22 39h116v70H22z"/><circle cx="61" cy="74" r="22"/><path d="M102 61h18m-18 12h18m-18 12h18"/></svg></div>
+              <div><h3 id="radio-empty-title">라디오를 준비하고 있어요</h3><p id="radio-empty-hint">잠시만 기다려 주세요.</p><button class="secondary-button" id="radio-reload" type="button">다시 확인</button></div>
+            </div>
+            <div class="radio-player" id="radio-player" hidden>
+              <div class="station-card">
+                <div class="station-art" aria-hidden="true"><svg viewBox="0 0 120 100"><path d="m24 24 69-16M15 32h90v57H15z"/><circle cx="46" cy="61" r="17"/><path d="M78 50h14M78 61h14M78 72h14"/></svg></div>
+                <p class="station-number" id="station-number"></p><h3 id="station-title"></h3><p class="station-type">인터넷 라디오</p>
+              </div>
+              <div class="radio-controls">
+                <p class="radio-status" id="radio-status" role="status" aria-live="polite" aria-atomic="true">재생 버튼을 눌러 주세요</p>
+                <div class="transport">
+                  <button class="preset-button" id="radio-previous" type="button" aria-label="이전 방송"><span aria-hidden="true">‹</span><small>이전</small></button>
+                  <button class="play-button" id="radio-play" type="button" disabled><span id="radio-play-icon" aria-hidden="true">▶</span><span id="radio-play-label">재생</span></button>
+                  <button class="preset-button" id="radio-next" type="button" aria-label="다음 방송"><span aria-hidden="true">›</span><small>다음</small></button>
+                </div>
+                <div class="volume-control" data-no-swipe><label for="radio-volume">소리 크기 <output id="volume-label" for="radio-volume">50%</output></label><input id="radio-volume" type="range" min="0" max="100" step="5" value="50" aria-label="라디오 소리 크기" aria-valuetext="50%"></div>
+                <p class="radio-help">대화나 돌봄 안내가 시작되면 잠시 멈춰요.</p>
+              </div>
+            </div>
+            <audio id="radio-audio" preload="none"></audio>
+          </section>
+          <section class="page game-page" id="page-game" data-page="game" data-phase="idle" aria-label="인지 놀이 · 순서 기억" aria-hidden="true" inert>
+            <header class="page-heading"><h2>인지 놀이</h2><span class="feature-tag">순서 기억</span></header>
+            <div class="game-guidance" role="status" aria-live="polite" aria-atomic="true">
+              <h3 id="game-status">반짝이는 순서를 기억해요</h3>
+              <p id="game-progress">순서를 보고, 같은 순서로 눌러 주세요</p>
+            </div>
+            <div class="game-actions" role="group" aria-label="기억한 순서대로 누르기">
+              <button class="game-action" id="game-left" type="button" data-game-action="left" data-active="false" aria-label="왼쪽" disabled><span class="game-symbol" aria-hidden="true">←</span><span>왼쪽</span><span class="game-cue" aria-hidden="true">●</span></button>
+              <button class="game-action" id="game-right" type="button" data-game-action="right" data-active="false" aria-label="오른쪽" disabled><span class="game-symbol" aria-hidden="true">→</span><span>오른쪽</span><span class="game-cue" aria-hidden="true">●</span></button>
+              <button class="game-action" id="game-both" type="button" data-game-action="both" data-active="false" aria-label="양손" disabled><span class="game-symbol" aria-hidden="true">↑ ↑</span><span>양손</span><span class="game-cue" aria-hidden="true">●</span></button>
+            </div>
+            <footer class="game-footer">
+              <div class="game-results" aria-label="이번 화면 세션의 놀이 기록"><p>이번 <strong id="game-score">0</strong>회 성공</p><p>최고 <strong id="game-best">0</strong>회 성공</p></div>
+              <button class="game-start" id="game-start" type="button" disabled>놀이 시작</button>
+            </footer>
+          </section>
+          <section class="page upcoming-page" id="page-memories" data-page="memories" aria-label="추억 · 사진 · 준비 중" aria-hidden="true" inert>
+            <header class="page-heading"><div><p class="eyebrow">다정한 순간들을 모아</p><h2>추억 · 사진</h2></div><span class="feature-tag">준비 중</span></header>
+            <div class="upcoming-card memories-card"><div class="illustration" aria-hidden="true"><svg viewBox="0 0 160 140"><rect x="32" y="18" width="99" height="110" rx="8" transform="rotate(8 81 73)"/><rect x="20" y="15" width="99" height="110" rx="8"/><path d="M31 87 52 62l20 18 16-13 20 20M34 108h43"/><circle cx="86" cy="43" r="9"/></svg></div><div><span class="upcoming-label">곧 함께해요</span><h3>다시 꺼내 볼 우리 이야기</h3><p>소중한 사진과 추억을 나누는 공간을<br>준비하고 있어요.</p></div></div>
+          </section>
+        </div>
+      </div>
+      <nav class="page-navigation" aria-label="화면 이동">
+        <button class="page-arrow" id="page-previous" type="button" aria-label="이전 화면" disabled>‹</button>
+        <div class="page-location"><p id="page-label" aria-live="polite">처음</p><div class="page-dots" role="group" aria-label="화면 선택">
+          <button class="page-dot" type="button" data-page-index="0" aria-label="처음 화면" aria-current="page"><span></span></button>
+          <button class="page-dot" type="button" data-page-index="1" aria-label="음악 · 라디오 화면"><span></span></button>
+          <button class="page-dot" type="button" data-page-index="2" aria-label="인지 놀이 화면"><span></span></button>
+          <button class="page-dot" type="button" data-page-index="3" aria-label="추억 · 사진 화면"><span></span></button>
+        </div></div>
+        <button class="page-arrow" id="page-next" type="button" aria-label="다음 화면">›</button>
+      </nav>
+    </main>
+  </body>
+</html>

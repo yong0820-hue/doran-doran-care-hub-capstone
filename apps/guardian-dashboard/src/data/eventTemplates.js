@@ -1,0 +1,58 @@
+export const EVENT_TEMPLATES = [
+  {
+    icon: '🏠',
+    type: 'presence_detected',
+    severity: 'info',
+    title: '재실 감지',
+    message: '거실에서 움직임이 감지되었습니다.',
+  },
+  {
+    icon: '🚶',
+    type: 'absence_detected',
+    severity: 'info',
+    title: '부재 감지',
+    message: '일정 시간 동안 움직임이 감지되지 않았습니다.',
+  },
+  {
+    icon: '🕰️',
+    type: 'long_inactivity',
+    severity: 'warning',
+    title: '장시간 미활동',
+    message: '대시보드 데모 및 Pi 실물 검증을 위한 장시간 미활동 이벤트입니다.',
+  },
+  {
+    icon: '💊',
+    type: 'medication_taken',
+    severity: 'success',
+    title: '복약 행동 감지',
+    message: '약통 열림이 감지되었습니다.',
+  },
+  {
+    icon: '⏰',
+    type: 'medication_delayed',
+    severity: 'warning',
+    title: '복약 지연',
+    message: '예정된 복약 시간이 지났습니다.',
+  },
+  {
+    icon: '🔔',
+    type: 'medication_reminder_sent',
+    severity: 'info',
+    title: '복약 안내',
+    message: '정해진 복약 시간에 음성 안내를 실행했습니다.',
+  },
+  {
+    icon: '⚠️',
+    type: 'fall_suspected',
+    severity: 'critical',
+    title: '낙상 의심',
+    message: '급격한 움직임 변화가 감지되었습니다. 즉각적인 확인이 필요합니다.',
+  },
+  {
+    icon: '🚨',
+    type: 'emergency_call',
+    severity: 'critical',
+    title: '응급 호출',
+    message: '어르신이 응급 버튼을 누르셨습니다.',
+  },
+]
